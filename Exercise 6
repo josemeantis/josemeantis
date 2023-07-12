@@ -1,0 +1,12 @@
+note over browser:
+User writes a new note
+end note
+
+browser->spa.js: Create Note Request
+spa.js->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+spa.js->server: Note data (content and date)
+server-->spa.js: 201 Created (note successfully created)
+
+note over spa.js:
+SPA.js updates the displayed notes
+end note

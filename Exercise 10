@@ -1,0 +1,67 @@
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+
+const Button = ({ text, onClick }) => {
+  return (
+    <button onClick={onClick}>{text}</button>
+  )
+}
+
+const StatisticLine = ({ text, value }) => {
+  return (
+    <div>
+      <p>{text}: {value}</p>
+    </div>
+  )
+}
+
+const Statistics = (props) => {
+  const { good, neutral, bad } = props;
+  const totalComments = good + neutral + bad;
+  const averageScore = (good - bad) / totalComments;
+  const percentagePositiveComments = (good / totalComments) * 100;
+
+  return (
+    <div>
+      <StatisticLine text="Good" value={good} />
+      <StatisticLine text="Neutral" value={neutral} />
+      <StatisticLine text="Bad" value={bad} />
+      <StatisticLine text="Total Comments" value={totalComments} />
+      <StatisticLine text="Average Score" value={averageScore} />
+      <StatisticLine text="Percentage Positive Comments" value={percentagePositiveComments} />
+    </div>
+  )
+}
+
+const App = () => {
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  // only show statistics once comments have been collected
+  const showStatistics = () => {
+    if (good + neutral + bad > 0) {
+      return (
+        <Statistics good={good} neutral={neutral} bad={bad} />
+      )
+    } else {
+      return <p>No feedback given</p>;
+    }
+  }
+
+  return (
+    <div>
+      <h1>give feedback</h1>
+      <Button text="Good" onClick={() => setGood(good + 1)}/>
+      <Button text="Neutral" onClick={() => setNeutral(neutral + 1)}/>
+      <Button text="Bad" onClick={() => setBad(bad + 1)}/>
+      <h1>statistics</h1>
+      {showStatistics()}
+    </div>
+  )
+}
+
+ReactDOM.render(<App />, 
+  document.getElementById('root')
+)

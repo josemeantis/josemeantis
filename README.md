@@ -1,2 +1,2 @@
-### Hi there 👋
-#### This is my personal repository for the FullStack Open 2023 course.
+Hi there 👋
+These are the solved exercises for Part-2 of the course.

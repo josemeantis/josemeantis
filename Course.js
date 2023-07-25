@@ -22,20 +22,11 @@ const Content = ({ parts }) => {
   );
 };
 
-const Total = ({ sum }) => {
-  return (
-    <p>
-      total of {sum} exercises
-    </p>
-  )
-}  
-
 const Course = ({ course }) => {
   return (
     <div>
       <Header courseName={course.name} />
       <Content parts={course.parts} />
-      <h4><Total sum={course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises}/> </h4>
     </div>
   );
 };
